@@ -7,7 +7,7 @@ This small bundle is a Ratchet abstraction for Symfony 4. Just create message ha
 Open a command console, enter your project directory and execute:
 
 ```console
-$ composer require rollandrock/websocket-bundle
+$ composer require gonzakpo/websocket-bundle
 ```
 
 ## Create handlers
