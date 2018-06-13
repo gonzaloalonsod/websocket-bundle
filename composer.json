@@ -30,5 +30,10 @@
   },
   "autoload-dev": {
     "psr-4": { "RollandRock\\WebsocketBundle\\Tests\\": "Tests" }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": "true"
+    }
   }
 }
