@@ -20,6 +20,8 @@
     "cboden/ratchet": "^0.4.1",
     "ratchet/pawl": "^0.3.2"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": { "RollandRock\\WebsocketBundle\\": "" },
     "exclude-from-classmap": [
