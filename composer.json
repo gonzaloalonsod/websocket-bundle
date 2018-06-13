@@ -16,7 +16,7 @@
   ],
   "require": {
     "php": "^7.0",
-    "symfony/framework-bundle": "^4.0",
+    "symfony/framework-bundle": "^3.3|^4.0",
     "cboden/ratchet": "^0.4.1",
     "ratchet/pawl": "^0.3.2"
   },
