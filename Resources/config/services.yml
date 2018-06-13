@@ -1,0 +1,17 @@
+services:
+    RollandRock\WebsocketBundle\Command\ServerCommand:
+        autoconfigure: true
+    RollandRock\WebsocketBundle\Handler\HandlerRegistry: ~
+    RollandRock\WebsocketBundle\Websocket:
+        public: true
+        autowire: true
+        arguments:
+            $clientClass: "%rr_ws_client%"
+    RollandRock\WebsocketBundle\Service\PawlService:
+        autowire: true
+        arguments:
+            $port: '%env(WEBSOCKET_PORT)%'
+        calls:
+            - method: setLogger
+              arguments:
+                  - '@logger'

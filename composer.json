@@ -1,0 +1,32 @@
+{
+  "name": "gonzakpo/websocket-bundle",
+  "type": "symfony-bundle",
+  "description": "Ratchet abstraction for Symfony 4",
+  "keywords": ["websocket", "symfony"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gonzalo Alonso",
+      "email": "gonkpo@gmail.com"
+    },
+    {
+      "name": "Pierre Rolland",
+      "email": "roll.pierre@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "symfony/framework-bundle": "~4.0",
+    "cboden/ratchet": "^0.4.1",
+    "ratchet/pawl": "^0.3.2"
+  },
+  "autoload": {
+    "psr-4": { "RollandRock\\WebsocketBundle\\": "" },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": { "RollandRock\\WebsocketBundle\\Tests\\": "Tests" }
+  }
+}
