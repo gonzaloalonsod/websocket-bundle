@@ -68,3 +68,9 @@ The messages need to have the following format :
       }
     }
 ```
+
+## Author
+Gonzalo Alonso - gonkpo@gmail.com
+
+## By
+Pierre Rolland - roll.pierre@gmail.com
