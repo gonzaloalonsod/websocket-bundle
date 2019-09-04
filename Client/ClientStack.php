@@ -13,9 +13,23 @@ class ClientStack
     /** @var ClientInterface[] */
     private $clients = [];
 
+    protected $memcached;
+    protected $memcachedHost = '127.0.0.1';
+    protected $memcachedPort = '11211';
+    protected $memcachedPrefix = 'sess_lot_';
+    protected $memcachedExpire = '864000';
+
+    public function __construct() {
+        $this->memcached = new \Memcached();
+        $this->memcached->addServer($this->memcachedHost, $this->memcachedPort);
+
+        $this->getMemcached();
+    }
+
     public function addClient(ClientInterface $client)
     {
         $this->clients[] = $client;
+        $this->replaceMemcached();
     }
 
     public function getClient(ConnectionInterface $connection): ClientInterface
@@ -26,6 +40,7 @@ class ClientStack
     public function removeClient(ConnectionInterface $connection)
     {
         unset($this->clients[$this->getClientIndex($connection)]);
+        $this->replaceMemcached();
     }
 
     public function getClients(): array
@@ -42,5 +57,23 @@ class ClientStack
         }
 
         throw new ClientNotFoundException();
+    }
+
+    private function getMemcached()
+    {
+        $clients = $this->memcached->get($this->memcachedPrefix.'clients', null);
+        if ($clients) {
+            $this->clients = $clients;
+        } else {
+            $this->memcached->add(
+                $this->memcachedPrefix.'clients', $this->clients, $this->memcachedExpire
+            );
+        }
+    }
+    private function replaceMemcached()
+    {
+        $this->memcached->replace(
+            $this->memcachedPrefix.'clients', $this->clients, $this->memcachedExpire
+        );
     }
 }
