@@ -14,14 +14,14 @@ class ClientStack
     private $clients = [];
 
     protected $memcached;
-    protected $memcachedHost = '127.0.0.1';
-    protected $memcachedPort = '11211';
-    protected $memcachedPrefix = 'sess_lot_';
-    protected $memcachedExpire = '864000';
+    protected $memcachedPrefix;
+    protected $memcachedExpire;
 
-    public function __construct() {
+    public function __construct($memcachedHost, $memcachedPort, $memcachedPrefix, $memcachedExpire) {
+        $this->memcachedPrefix = $memcachedPrefix;
+        $this->memcachedExpire = $memcachedExpire;
         $this->memcached = new \Memcached();
-        $this->memcached->addServer($this->memcachedHost, $this->memcachedPort);
+        $this->memcached->addServer($memcachedHost, $memcachedPort);
 
         $this->getMemcached();
     }
@@ -61,19 +61,19 @@ class ClientStack
 
     private function getMemcached()
     {
-        $clients = $this->memcached->get($this->memcachedPrefix.'clients', null);
+        $clients = $this->memcached->get($this->memcachedPrefix.'rr_clients', null);
         if ($clients) {
             $this->clients = $clients;
         } else {
             $this->memcached->add(
-                $this->memcachedPrefix.'clients', $this->clients, $this->memcachedExpire
+                $this->memcachedPrefix.'rr_clients', $this->clients, $this->memcachedExpire
             );
         }
     }
     private function replaceMemcached()
     {
         $this->memcached->replace(
-            $this->memcachedPrefix.'clients', $this->clients, $this->memcachedExpire
+            $this->memcachedPrefix.'rr_clients', $this->clients, $this->memcachedExpire
         );
     }
 }

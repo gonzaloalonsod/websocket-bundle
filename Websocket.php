@@ -21,9 +21,9 @@ class Websocket implements MessageComponentInterface
     /** @var string */
     private $clientClass;
 
-    public function __construct(HandlerRegistry $handlerRegistry, string $clientClass)
+    public function __construct(HandlerRegistry $handlerRegistry, string $clientClass, ClientStack $clientStack)
     {
-        $this->clientStack = new ClientStack();
+        $this->clientStack = $clientStack;
         $this->handlerRegistry = $handlerRegistry;
         $this->clientClass = $clientClass;
     }

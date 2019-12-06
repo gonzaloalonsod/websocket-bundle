@@ -15,3 +15,10 @@ services:
             - method: setLogger
               arguments:
                   - '@logger'
+    RollandRock\WebsocketBundle\Client\ClientStack:
+        autowire: true
+        arguments:
+            $memcachedHost: '%env(memcache_server)%'
+            $memcachedPort: '%env(memcache_port)%'
+            $memcachedPrefix: '%env(session_prefix)%'
+            $memcachedExpire: '%env(session_expire)%'
