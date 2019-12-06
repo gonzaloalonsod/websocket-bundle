@@ -11,10 +11,10 @@
     }
   ],
   "require": {
-    "php": "^7.0",
-    "symfony/framework-bundle": "^3.4|^4.3",
+    "php": "^7.3",
+    "symfony/framework-bundle": "^3.4|^4.3|^5.0",
     "cboden/ratchet": "^0.4.1",
-    "ratchet/pawl": "^0.3.2"
+    "ratchet/pawl": "^0.3.4"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
